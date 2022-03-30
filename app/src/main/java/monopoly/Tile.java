@@ -19,7 +19,7 @@ public abstract class Tile {
     // TODO: set the prev and next references correctly
     // the next and prev links should point to the object created
 
-    next = prev = this; // this is not correct remove
+    next = prev = null; // this is not correct remove
 
     playersOnTile = new ArrayList<>();
   }
