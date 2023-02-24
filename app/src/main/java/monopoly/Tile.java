@@ -18,6 +18,8 @@ public abstract class Tile {
   protected Tile() {
     // TODO: set the prev and next references correctly
     // the next and prev links should point to the object created
+    // note that no complex logic like loops or if statements are needed and should not be used
+    // work out the correct way of setting the links using object diagrams
 
     next = prev = null; // this is not correct remove
 
@@ -27,7 +29,7 @@ public abstract class Tile {
   protected Tile(Tile prevTile) {
     // TODO: set the prev and next references correctly
     // the object created should be inserted into the linked list as the next tile after prevTile
-    // note that no complex logic like loops or if statements are needed
+    // note that no complex logic like loops or if statements are needed and should not be used
     // work out the correct way of setting the links using object diagrams
 
     prev = next = null; // this is not correct, remove
