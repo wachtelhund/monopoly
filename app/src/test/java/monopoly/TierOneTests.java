@@ -136,97 +136,88 @@ public class TierOneTests {
     }
   }
 
-  /*
-   * @Test
-   * public void propertyTest_buy_ok() {
-   * // implement the Property buy operation according to the Design document
-   * sequence diagram
-   * Start s = new Start();
-   * final String streetName = "Downing Street";
-   * Property sut = new Property(s, streetName);
-   * 
-   * DummyPlayer p = new DummyPlayer(sut, "Dummy Player");
-   * int originalFunds = p.getFunds();
-   * 
-   * boolean ret = sut.buy(p);
-   * 
-   * assertEquals(true, sut.isOwner(p), "Property owner not correct set");
-   * assertEquals(originalFunds - sut.getPrice(), p.getFunds(),
-   * "Funds not correctly deduced");
-   * assertEquals(true, ret, "buy should return true if the property is bought");
-   * }
-   */
+  @Test
+  public void propertyTest_buy_ok() {
+    // implement the Property buy operation according to the Design document
+    // sequence diagram
+    Start s = new Start();
+    final String streetName = "Downing Street";
+    Property sut = new Property(s, streetName);
 
-  /*
-   * @Test
-   * public void propertyTest_buy_hasOwner() {
-   * // implement the Property buy operation according to the Design document
-   * sequence diagram
-   * Start s = new Start();
-   * final String streetName = "Downing Street";
-   * Property sut = new Property(s, streetName);
-   * 
-   * DummyPlayer p = new DummyPlayer(sut, "Dummy Player");
-   * DummyPlayer someOtherPlayer = new DummyPlayer(sut, "Someone else");
-   * 
-   * sut.buy(someOtherPlayer);
-   * 
-   * int originalFunds = p.getFunds();
-   * 
-   * boolean ret = sut.buy(p);
-   * 
-   * 
-   * assertEquals(true, sut.isOwner(someOtherPlayer),
-   * "Property owner should not change");
-   * assertEquals(false, sut.isOwner(p), "Property owner should not change");
-   * 
-   * assertEquals(originalFunds, p.getFunds(), "Funds should not be deduced");
-   * assertEquals(false, ret,
-   * "buy should return false if the property is not bought");
-   * }
-   */
+    DummyPlayer p = new DummyPlayer(sut, "Dummy Player");
+    int originalFunds = p.getFunds();
 
-  /*
-   * @Test
-   * public void propertyTest_buy_notOnTile() {
-   * // implement the Property buy operation according to the Design document
-   * sequence diagram
-   * Start s = new Start();
-   * final String streetName = "Downing Street";
-   * Property sut = new Property(s, streetName);
-   * 
-   * DummyPlayer p = new DummyPlayer(s, "Dummy Player");
-   * int originalFunds = p.getFunds();
-   * 
-   * boolean ret = sut.buy(p);
-   * 
-   * assertEquals(false, sut.isOwner(p), "Property owner should not be set");
-   * assertEquals(originalFunds, p.getFunds(), "Funds should not be deduced");
-   * assertEquals(false, ret,
-   * "buy should return false if the property is not bought");
-   * }
-   */
+    boolean ret = sut.buy(p);
 
-  /*
-   * @Test
-   * public void propertyTest_buy_noFunds() {
-   * // implement the Property buy operation according to the Design document
-   * sequence diagram
-   * Start s = new Start();
-   * final String streetName = "Downing Street";
-   * Property sut = new Property(s, streetName);
-   * 
-   * DummyPlayer p = new DummyPlayer(sut, "Dummy Player");
-   * int originalFunds = p.getFunds();
-   * p.deduceFunds(originalFunds - 1);
-   * 
-   * boolean ret = sut.buy(p);
-   * 
-   * assertEquals(false, sut.isOwner(p), "Property owner should not be set");
-   * assertEquals(false, ret,
-   * "buy should return false if the property is not bought");
-   * }
-   */
+    assertEquals(true, sut.isOwner(p), "Property owner not correct set");
+    assertEquals(originalFunds - sut.getPrice(), p.getFunds(),
+        "Funds not correctly deduced");
+    assertEquals(true, ret, "buy should return true if the property is bought");
+  }
+
+  @Test
+  public void propertyTest_buy_hasOwner() {
+    // implement the Property buy operation according to the Design document
+    // sequence diagram
+    Start s = new Start();
+    final String streetName = "Downing Street";
+    Property sut = new Property(s, streetName);
+
+    DummyPlayer p = new DummyPlayer(sut, "Dummy Player");
+    DummyPlayer someOtherPlayer = new DummyPlayer(sut, "Someone else");
+
+    sut.buy(someOtherPlayer);
+
+    int originalFunds = p.getFunds();
+
+    boolean ret = sut.buy(p);
+
+    assertEquals(true, sut.isOwner(someOtherPlayer),
+        "Property owner should not change");
+    assertEquals(false, sut.isOwner(p), "Property owner should not change");
+
+    assertEquals(originalFunds, p.getFunds(), "Funds should not be deduced");
+    assertEquals(false, ret,
+        "buy should return false if the property is not bought");
+  }
+
+  @Test
+  public void propertyTest_buy_notOnTile() {
+    // implement the Property buy operation according to the Design document
+    // sequence diagram
+    Start s = new Start();
+    final String streetName = "Downing Street";
+    Property sut = new Property(s, streetName);
+
+    DummyPlayer p = new DummyPlayer(s, "Dummy Player");
+    int originalFunds = p.getFunds();
+
+    boolean ret = sut.buy(p);
+
+    assertEquals(false, sut.isOwner(p), "Property owner should not be set");
+    assertEquals(originalFunds, p.getFunds(), "Funds should not be deduced");
+    assertEquals(false, ret,
+        "buy should return false if the property is not bought");
+  }
+
+  @Test
+  public void propertyTest_buy_noFunds() {
+    // implement the Property buy operation according to the Design document
+    // sequence diagram
+    Start s = new Start();
+    final String streetName = "Downing Street";
+    Property sut = new Property(s, streetName);
+
+    DummyPlayer p = new DummyPlayer(sut, "Dummy Player");
+    int originalFunds = p.getFunds();
+    p.deduceFunds(originalFunds - 1);
+
+    boolean ret = sut.buy(p);
+
+    assertEquals(false, sut.isOwner(p), "Property owner should not be set");
+    assertEquals(false, ret,
+        "buy should return false if the property is not bought");
+  }
 
   // These are some internal classes used to facilitate testing. You do not need
   // to bother with them

@@ -1,6 +1,5 @@
 package monopoly;
 
-
 /**
  * Represents a property tile that can be bought by a player.
  */
@@ -43,7 +42,16 @@ public class Property extends Tile {
   public boolean buy(Player player) {
     // TODO: Implement
     // you can only buy a property if it is not owned by anyone
- 
+
+    boolean onTile = isOnTile(player);
+    boolean noOwner = owner == null;
+    if (onTile && noOwner) {
+      boolean hasPayed = player.deduceFunds(getPrice());
+      if (hasPayed) {
+        setOwner(player);
+        return true;
+      }
+    }
     return false;
   }
 
