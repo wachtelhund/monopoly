@@ -12,28 +12,44 @@ public abstract class Tile {
 
   // a tile knows what objects (players) are currently on the tile, these are
   // never used for anything else than comparing object references
-  // thus we can store them at the highest level of abstraction - as Object instances
-  ArrayList<Object> playersOnTile;  
+  // thus we can store them at the highest level of abstraction - as Object
+  // instances
+  ArrayList<Object> playersOnTile;
 
   protected Tile() {
     // TODO: set the prev and next references correctly
     // the next and prev links should point to the object created
-    // note that no complex logic like loops or if statements are needed and should not be used
+    // note that no complex logic like loops or if statements are needed and should
+    // not be used
     // work out the correct way of setting the links using object diagrams
 
-    next = prev = null; // this is not correct remove
+    next = this;
+    prev = this;
 
     playersOnTile = new ArrayList<>();
   }
 
   protected Tile(Tile prevTile) {
     // TODO: set the prev and next references correctly
-    // the object created should be inserted into the linked list as the next tile after prevTile
-    // note that no complex logic like loops or if statements are needed and should not be used
+    // the object created should be inserted into the linked list as the next tile
+    // after prevTile
+    // note that no complex logic like loops or if statements are needed and should
+    // not be used
     // work out the correct way of setting the links using object diagrams
 
-    prev = next = null; // this is not correct, remove
-    prevTile.next = prevTile.prev = null; // this is not correct, remove    
+    this.prev = prevTile;
+    this.next = prevTile.next;
+    prevTile.next = this;
+
+    if (this.next != null) {
+      this.next.prev = this;
+    } else {
+      this.next = prevTile;
+      prevTile.prev = this;
+    }
+
+    // prev = next = null; // this is not correct, remove
+    // prevTile.next = prevTile.prev = null; // this is not correct, remove
 
     playersOnTile = new ArrayList<>();
   }
@@ -47,35 +63,35 @@ public abstract class Tile {
   }
 
   /**
-  * Checks if a player is on the tile.
-  */
+   * Checks if a player is on the tile.
+   */
   public boolean isOnTile(Player player) {
     return playersOnTile.contains(player);
   }
 
   /**
-  * Called when a player moves over a tile.
-  */
+   * Called when a player moves over a tile.
+   */
   public abstract void visit(Player player);
 
   /**
-  * Called when a player stops on a tile.
-  * Subclasses need to call super if overridden.
-  */
+   * Called when a player stops on a tile.
+   * Subclasses need to call super if overridden.
+   */
   public void stoppedOn(Player player) {
     playersOnTile.add(player);
   }
 
   /**
-  * Called when a player moves away from the tile stopped on.
-  * Subclasses need to call super if overridden.
-  */
+   * Called when a player moves away from the tile stopped on.
+   * Subclasses need to call super if overridden.
+   */
   public void startOn(Player player) {
     playersOnTile.remove(player);
   }
 
   /**
-  * Called when a player wants to buy a tile.
-  */
+   * Called when a player wants to buy a tile.
+   */
   public abstract boolean buy(Player player);
 }
